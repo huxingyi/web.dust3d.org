@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-webassembly:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Cache Qt Archive
         id: cache-qt
