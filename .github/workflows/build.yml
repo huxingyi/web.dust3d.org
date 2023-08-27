@@ -45,7 +45,7 @@ jobs:
           source ~/emsdk/emsdk_env.sh
           ./configure -feature-thread -qt-host-path ~/qt-everywhere-src-6.5.2/qtbase -platform wasm-emscripten -prefix $PWD/qtbase
           cmake --build . --parallel -t qtbase -t qtdeclarative -t qtimageformats -t qtsvg
-      - name: Build Dust3D Webassembly:
+      - name: Build Dust3D Webassembly
         run: |
           cd ~
           git clone https://github.com/huxingyi/dust3d.git
