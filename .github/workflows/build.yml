@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-webassembly:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Cache Qt Archive
         id: cache-qt
@@ -25,7 +25,7 @@ jobs:
       - name: Build Qt Host Version
         run: |
           cd ~
-          tar xvf qt-everywhere-src-6.5.2.tar
+          tar xf qt-everywhere-src-6.5.2.tar
           cd qt-everywhere-src-6.5.2
           ./configure
           cmake --build . --parallel
@@ -40,7 +40,7 @@ jobs:
         run: |
           cd ~
           mkdir qt-everywhere-src-6.5.2-webassembly
-          tar xvf qt-everywhere-src-6.5.2.tar -C ./qt-everywhere-src-6.5.2-webassembly
+          tar xf qt-everywhere-src-6.5.2.tar -C ./qt-everywhere-src-6.5.2-webassembly
           cd ~/qt-everywhere-src-6.5.2-webassembly/qt-everywhere-src-6.5.2
           source ~/emsdk/emsdk_env.sh
           ./configure -feature-thread -qt-host-path ~/qt-everywhere-src-6.5.2/qtbase -platform wasm-emscripten -prefix $PWD/qtbase
@@ -52,7 +52,7 @@ jobs:
           cd ~/dust3d
           source ~/emsdk/emsdk_env.sh
           ~/qt-everywhere-src-6.5.2-webassembly/qt-everywhere-src-6.5.2/qtbase/bin/qmake
-          make -j`sysctl -n hw.logicalcpu`
+          make -j`nproc`
       - name: Upload build
         uses: actions/upload-artifact@v3
         with:
