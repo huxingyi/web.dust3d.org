@@ -50,6 +50,7 @@ jobs:
           cd ~/dust3d
           source ~/emsdk/emsdk_env.sh
           ~/qt-everywhere-src-6.5.2-webassembly/qt-everywhere-src-6.5.2/qtbase/bin/qmake
+          alias nproc="sysctl -n hw.logicalcpu"
           make -j`nproc`
       - name: Upload build
         uses: actions/upload-artifact@v3
